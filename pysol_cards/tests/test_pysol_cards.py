@@ -25,4 +25,7 @@ from pysol_cards.tests import base
 class TestPysol_cards(base.TestCase):
 
     def test_something(self):
-        pass
+        import pysol_cards.cards
+
+    def test_import_random(self):
+        import pysol_cards.random
