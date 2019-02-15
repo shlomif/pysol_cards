@@ -27,5 +27,8 @@ class TestPysol_cards(base.TestCase):
     def test_something(self):
         import pysol_cards.cards
 
+    def test_import_deal_game(self):
+        import pysol_cards.deal_game
+
     def test_import_random(self):
         import pysol_cards.random
