@@ -1,4 +1,4 @@
 pysol_cards Style Commandments
 ===============================================
 
-Read the OpenStack Style Commandments https://docs.openstack.org/hacking/latest/
+Read https://fc-solve.shlomifish.org/docs/distro/HACKING.html .
