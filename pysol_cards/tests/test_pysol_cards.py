@@ -32,3 +32,9 @@ class TestPysol_cards(base.TestCase):
 
     def test_import_random(self):
         import pysol_cards.random
+        class Foo(pysol_cards.random.LCRandom31):
+            def bar(self):
+                return super(pysol_cards.random.LCRandom31, self).shuffle([0])
+        r = Foo()
+        r.setSeed(5)
+        self.assertEqual(r.bar(), [0], "super()")

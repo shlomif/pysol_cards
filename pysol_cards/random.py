@@ -16,7 +16,7 @@ from pysol_cards.cards import ms_rearrange
 import random2
 
 
-class RandomBase:
+class RandomBase(object):
     DEALS_PYSOL = 0
     DEALS_PYSOLFC = 1
     DEALS_MS = 2
@@ -28,6 +28,7 @@ class RandomBase:
         return seq
 
     def randint(self, a, b):
+        """ Get a random integer in the range [a, b] including both ends."""
         return a + int(self.random() * (b + 1 - a))
 
 
