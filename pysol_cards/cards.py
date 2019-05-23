@@ -11,7 +11,7 @@
 """
 
 
-class Card:
+class Card(object):
     ACE = 1
     KING = 13
 
@@ -34,7 +34,7 @@ class Card:
         return ret
 
 
-class CardRenderer:
+class CardRenderer(object):
     """docstring for CardRenderer"""
     def __init__(self, print_ts):
         self.print_ts = print_ts

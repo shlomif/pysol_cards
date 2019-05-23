@@ -22,7 +22,7 @@ def empty_card():
     return ret
 
 
-class Columns:
+class Columns(object):
     def __init__(self, num):
         self.cols = [[] for _ in range(num)]
 
@@ -33,7 +33,7 @@ class Columns:
         self.cols.reverse()
 
 
-class Board:
+class Board(object):
     def __init__(self, num_columns, with_freecells=False,
                  with_talon=False, with_foundations=False):
         self.with_freecells = with_freecells
@@ -106,7 +106,7 @@ class Board:
         return "".join(l + "\n" for l in self._lines)
 
 
-class Game:
+class Game(object):
     REVERSE_MAP = \
         {
             "freecell":
