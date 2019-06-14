@@ -38,3 +38,23 @@ class TestPysol_cards(base.TestCase):
         r = Foo()
         r.setSeed(5)
         self.assertEqual(r.bar(), [0], "super()")
+
+    def test_msdeals_large_seed(self):
+        from pysol_cards.cards import CardRenderer
+        from pysol_cards.deal_game import Game
+        from pysol_cards.random import RandomBase
+        error = False
+        which_deals = RandomBase.DEALS_MS
+        max_rank = 13
+        print_ts = True
+        try:
+            Game("freecell", 2 ** 33 + 1, which_deals, max_rank).print_layout(CardRenderer(print_ts))
+        except ValueError:
+            error = True
+        self.assertEqual(error, True, "value out of range.")
+        error = False
+        try:
+            Game("freecell", 0, which_deals, max_rank).print_layout(CardRenderer(print_ts))
+        except ValueError:
+            error = True
+        self.assertEqual(error, True, "value out of range.")

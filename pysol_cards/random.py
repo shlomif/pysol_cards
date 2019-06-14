@@ -42,9 +42,11 @@ class LCRandom64(PysolRandom):
 
 
 class LCRandom31(RandomBase):
-    MAX_SEED = ((1 << (32 + 2)) - 1)         # 34 bits
+    MAX_SEED = ((1 << (31 + 2)) - 1)         # 33 bits
 
     def setSeed(self, seed):
+        if not 1 <= seed <= self.MAX_SEED:
+            raise ValueError("seed is out of range")
         self.seed = seed
         self.seedx = seed if (seed < 0x100000000) else (seed - 0x100000000)
 
