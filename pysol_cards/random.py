@@ -6,6 +6,7 @@
 #
 # Distributed under terms of the Expat license.
 
+import re
 
 from pysol_cards.cards import ms_rearrange
 from pysol_cards.random_base import RandomBase
@@ -85,5 +86,7 @@ def shuffle(cards, game_num, which_deals):
     r.setSeed(game_num)
     return r.shuffle(ms_rearrange(cards) if ms else cards)
 
+_ms_pat = re.compile("ms([0-9]+)\\n?\\Z")
 def match_ms_deal_prefix(mystring):
-    return None
+    ret = re.match(_ms_pat, mystring)
+    return None if not ret else int(ret.group(1))

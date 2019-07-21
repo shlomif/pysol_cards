@@ -25,13 +25,14 @@ from pysol_cards.tests import base
 class TestPysolCards(base.TestCase):
 
     def test_something(self):
-        import pysol_cards.cards
+        import pysol_cards.cards  # noqa: F401
 
     def test_import_deal_game(self):
-        import pysol_cards.deal_game
+        import pysol_cards.deal_game  # noqa: F401
 
     def test_import_random(self):
         import pysol_cards.random
+
         class Foo(pysol_cards.random.LCRandom31):
             def bar(self):
                 return super(pysol_cards.random.LCRandom31, self).shuffle([0])
@@ -42,6 +43,7 @@ class TestPysolCards(base.TestCase):
     def test_ms_seed_prefix(self):
         from pysol_cards.random import match_ms_deal_prefix
         self.assertEqual(match_ms_deal_prefix('123'), None, "no prefix")
+        self.assertEqual(match_ms_deal_prefix('ms200400'), 200400, "ms prefix")
 
     def test_msdeals_large_seed(self):
         from pysol_cards.cards import CardRenderer
@@ -52,13 +54,15 @@ class TestPysolCards(base.TestCase):
         max_rank = 13
         print_ts = True
         try:
-            Game("freecell", 2 ** 33 + 1, which_deals, max_rank).print_layout(CardRenderer(print_ts))
+            Game("freecell", 2 ** 33 + 1, which_deals, max_rank).print_layout(
+                CardRenderer(print_ts))
         except ValueError:
             error = True
         self.assertEqual(error, True, "value out of range.")
         error = False
         try:
-            Game("freecell", 0, which_deals, max_rank).print_layout(CardRenderer(print_ts))
+            Game("freecell", 0, which_deals, max_rank).print_layout(
+                CardRenderer(print_ts))
         except ValueError:
             error = True
         self.assertEqual(error, True, "value out of range.")
