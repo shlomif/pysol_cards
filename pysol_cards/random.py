@@ -84,3 +84,6 @@ def shuffle(cards, game_num, which_deals):
         RandomBase.DEALS_PYSOLFC else LCRandom64()
     r.setSeed(game_num)
     return r.shuffle(ms_rearrange(cards) if ms else cards)
+
+def match_ms_deal_prefix(mystring):
+    return None

@@ -22,7 +22,7 @@ Tests for `pysol_cards` module.
 from pysol_cards.tests import base
 
 
-class TestPysol_cards(base.TestCase):
+class TestPysolCards(base.TestCase):
 
     def test_something(self):
         import pysol_cards.cards
@@ -38,6 +38,10 @@ class TestPysol_cards(base.TestCase):
         r = Foo()
         r.setSeed(5)
         self.assertEqual(r.bar(), [0], "super()")
+
+    def test_ms_seed_prefix(self):
+        from pysol_cards.random import match_ms_deal_prefix
+        self.assertEqual(match_ms_deal_prefix('123'), None, "no prefix")
 
     def test_msdeals_large_seed(self):
         from pysol_cards.cards import CardRenderer
