@@ -33,3 +33,12 @@ class RandomBase(object):
         if self.seed_as_string:
             return self.seed_as_string
         return str(self)
+
+    def getSeedStr(self):
+        return str(self.initial_seed)
+
+    def __str__(self):
+        return self.str(self.initial_seed)
+
+    def str(self, seed):
+        return '%020d' % (seed)
