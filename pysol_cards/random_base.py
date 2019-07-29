@@ -12,6 +12,13 @@ class RandomBase(object):
     DEALS_PYSOLFC = 1
     DEALS_MS = 2
 
+    MAX_SEED = 10 ** 20
+    ORIGIN_UNKNOWN = 0
+    ORIGIN_RANDOM = 1
+    ORIGIN_PREVIEW = 2
+    ORIGIN_SELECTED = 3
+    ORIGIN_NEXT_GAME = 4
+
     def __init__(self):
         """docstring for __init__"""
         self.seed_as_string = None
