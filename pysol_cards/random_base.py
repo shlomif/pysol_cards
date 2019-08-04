@@ -49,3 +49,13 @@ class RandomBase(object):
 
     def str(self, seed):
         return '%020d' % (seed)
+
+    def increaseSeed(self, seed):
+        if seed < self.MAX_SEED:
+            return seed + 1
+        return 0
+
+    def copy(self):
+        ret = self.__class__()
+        ret.__dict__.update(self.__dict__)
+        return ret
