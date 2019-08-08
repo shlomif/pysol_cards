@@ -6,6 +6,8 @@
 #
 # Distributed under terms of the MIT license.
 
+from pysol_cards.errors import SubclassResponsibility
+
 
 class RandomBase(object):
     DEALS_PYSOL = 0
@@ -59,3 +61,11 @@ class RandomBase(object):
         ret = self.__class__()
         ret.__dict__.update(self.__dict__)
         return ret
+
+    def reset(self):
+        raise SubclassResponsibility
+
+    def _getRandomSeed(self):
+        import time
+        ret = int(time.time() * 256.0)
+        return ((ret ^ (ret >> 24)) % (self.MAX_SEED + 1))
