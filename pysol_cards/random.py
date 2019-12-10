@@ -78,6 +78,9 @@ class MTRandom(RandomBase, random2.Random):
         random2.Random.__init__(self, seed)
         self.initial_state = self.getstate()
 
+    def reset(self):
+        self.setstate(self.initial_state)
+
 
 def shuffle(cards, game_num, which_deals):
     ms = ((game_num <= 32000) or (which_deals == RandomBase.DEALS_MS))
@@ -86,7 +89,10 @@ def shuffle(cards, game_num, which_deals):
     r.setSeed(game_num)
     return r.shuffle(ms_rearrange(cards) if ms else cards)
 
+
 _ms_pat = re.compile("ms([0-9]+)\\n?\\Z")
+
+
 def match_ms_deal_prefix(mystring):
     ret = re.match(_ms_pat, mystring)
     return None if not ret else int(ret.group(1))
