@@ -79,6 +79,9 @@ class MTRandom(RandomBase, random2.Random):
             seed = self._getRandomSeed()
         RandomBase.__init__(self)
         random2.Random.__init__(self, seed)
+        self.initial_seed = seed
+        self.initial_state = self.getstate()
+        self.origin = self.ORIGIN_UNKNOWN
 
     def setSeed(self, seed):
         random2.Random.__init__(self, seed)
