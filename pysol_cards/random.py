@@ -74,6 +74,12 @@ class LCRandom31(RandomBase):
 class MTRandom(RandomBase, random2.Random):
     MAX_SEED = 100000000000000000000  # 20 digits
 
+    def __init__(self, seed=None):
+        if seed is None:
+            seed = self._getRandomSeed()
+        RandomBase.__init__(self)
+        random2.Random.__init__(self, seed)
+
     def setSeed(self, seed):
         random2.Random.__init__(self, seed)
         self.initial_state = self.getstate()
