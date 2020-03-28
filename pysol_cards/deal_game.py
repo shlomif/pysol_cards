@@ -192,6 +192,9 @@ class Game(object):
         self.card_idx += 1
         return c
 
+    def next(self):
+        return self.__next__()
+
     def add(self, idx, card):
         self.board.add(idx, card)
 
