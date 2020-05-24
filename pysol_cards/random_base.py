@@ -21,7 +21,7 @@ class RandomBase(object):
     ORIGIN_SELECTED = 3
     ORIGIN_NEXT_GAME = 4
 
-    def __init__(self):
+    def __init__(self, seed=None):
         """docstring for __init__"""
         self.seed_as_string = None
 

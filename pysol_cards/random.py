@@ -34,15 +34,34 @@ class PysolRandom(RandomBase):
 # ************************************************************************/
 
 
-class LCRandom64(PysolRandom):
+class _LCBase(PysolRandom):
+    def __init__(self, seed=None):
+        if seed is None:
+            seed = self._getRandomSeed()
+        PysolRandom.__init__(self, seed)
+        self.initial_seed = seed
+        self.setSeed(seed)
+        self.origin = self.ORIGIN_UNKNOWN
+
+    def reset(self):
+        self.setSeed(self.initial_seed)
+
+
+class LCRandom64(_LCBase):
     MAX_SEED = 0xffffffffffffffff  # 64 bits
 
     def random(self):
         self.seed = (self.seed * 6364136223846793005 + 1) & self.MAX_SEED
         return ((self.seed >> 21) & 0x7fffffff) / 2147483648.0
 
+    def getSeedAsStr(self):
+        return "old" + str(self.seed)
 
-class LCRandom31(RandomBase):
+    def getSeedStr(self):
+        return "old" + str(self.initial_seed)
+
+
+class LCRandom31(_LCBase):
     MAX_SEED = ((1 << (31 + 2)) - 1)         # 33 bits
 
     def setSeed(self, seed):
@@ -50,6 +69,7 @@ class LCRandom31(RandomBase):
             raise ValueError("seed is out of range")
         self.seed = seed
         self.seedx = seed if (seed < 0x100000000) else (seed - 0x100000000)
+        return self.seed
 
     def random(self):
         if (self.seed < 0x100000000):
@@ -69,6 +89,12 @@ class LCRandom31(RandomBase):
     def randint(self, a, b):
         return a + self.random() % (b + 1 - a)
 
+    def getSeedAsStr(self):
+        return "ms" + str(self.seed)
+
+    def getSeedStr(self):
+        return "ms" + str(self.initial_seed)
+
 
 # * Mersenne Twister random number generator
 class MTRandom(RandomBase, random2.Random):
@@ -86,6 +112,7 @@ class MTRandom(RandomBase, random2.Random):
     def setSeed(self, seed):
         random2.Random.__init__(self, seed)
         self.initial_state = self.getstate()
+        return seed
 
     def reset(self):
         self.setstate(self.initial_state)
