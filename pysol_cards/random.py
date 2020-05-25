@@ -100,6 +100,11 @@ class LCRandom31(_LCBase):
         integer_seed = super(LCRandom31, self).increaseSeed(seed)
         return "ms{}".format(integer_seed)
 
+    def str(self, seed):
+        if match_ms_deal_prefix(seed) is None:
+            return "%05d" % int(seed)
+        return seed
+
 
 # * Mersenne Twister random number generator
 class MTRandom(RandomBase, random2.Random):
