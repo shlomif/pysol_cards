@@ -95,6 +95,11 @@ class LCRandom31(_LCBase):
     def getSeedStr(self):
         return "ms" + str(self.initial_seed)
 
+    def increaseSeed(self, seed):
+        """docstring for increaseSeed"""
+        integer_seed = super(LCRandom31, self).increaseSeed(seed)
+        return "ms{}".format(integer_seed)
+
 
 # * Mersenne Twister random number generator
 class MTRandom(RandomBase, random2.Random):

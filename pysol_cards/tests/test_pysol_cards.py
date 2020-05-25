@@ -35,6 +35,13 @@ class TestPysolCards(base.TestCase):
         r.setSeed(5)
         self.assertEqual(r.bar(), [0], "super()")
 
+    def test_inc_seed(self):
+        import pysol_cards.random
+
+        r = pysol_cards.random.LCRandom31(200000)
+        seed = r.increaseSeed(200000)
+        self.assertEqual(seed, 'ms200001', "increaseSeed()")
+
     def test_choice(self):
         import pysol_cards.random
         r = pysol_cards.random.LCRandom64(500)
