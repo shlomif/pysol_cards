@@ -35,6 +35,14 @@ class RandomBase(object):
         """ Get a random integer in the range [a, b] including both ends."""
         return a + int(self.random() * (b + 1 - a))
 
+    def randrange(self, a, b):
+        """ Get a random integer in the range [a, b) excluding b."""
+        return self.randint(a, b - 1)
+
+    def choice(self, sequence):
+        """ Pick a random element of sequence """
+        return sequence[self.randrange(0, len(sequence))]
+
     def setSeedAsStr(self, new_s):
         self.seed_as_string = new_s
 

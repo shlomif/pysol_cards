@@ -35,6 +35,12 @@ class TestPysolCards(base.TestCase):
         r.setSeed(5)
         self.assertEqual(r.bar(), [0], "super()")
 
+    def test_choice(self):
+        import pysol_cards.random
+        r = pysol_cards.random.LCRandom64(500)
+        result = r.choice([500, 600, 700])
+        self.assertTrue((result in (500, 600, 700)), "choice")
+
     def test_ms_seed_prefix(self):
         from pysol_cards.random import match_ms_deal_prefix
         self.assertEqual(match_ms_deal_prefix('123'), None, "no prefix")
