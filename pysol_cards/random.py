@@ -46,6 +46,12 @@ class _LCBase(PysolRandom):
     def reset(self):
         self.setSeed(self.initial_seed)
 
+    def getSeedAsStr(self):
+        return self._getSeedStrPrefix() + str(self.seed)
+
+    def getSeedStr(self):
+        return self._getSeedStrPrefix() + str(self.initial_seed)
+
 
 class LCRandom64(_LCBase):
     MAX_SEED = 0xffffffffffffffff  # 64 bits
@@ -54,11 +60,8 @@ class LCRandom64(_LCBase):
         self.seed = (self.seed * 6364136223846793005 + 1) & self.MAX_SEED
         return ((self.seed >> 21) & 0x7fffffff) / 2147483648.0
 
-    def getSeedAsStr(self):
-        return "old" + str(self.seed)
-
-    def getSeedStr(self):
-        return "old" + str(self.initial_seed)
+    def _getSeedStrPrefix(self):
+        return "old"
 
 
 class LCRandom31(_LCBase):
@@ -89,11 +92,8 @@ class LCRandom31(_LCBase):
     def randint(self, a, b):
         return a + self.random() % (b + 1 - a)
 
-    def getSeedAsStr(self):
-        return "ms" + str(self.seed)
-
-    def getSeedStr(self):
-        return "ms" + str(self.initial_seed)
+    def _getSeedStrPrefix(self):
+        return "ms"
 
     def increaseSeed(self, seed):
         """docstring for increaseSeed"""
