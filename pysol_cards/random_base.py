@@ -79,5 +79,9 @@ class RandomBase(object):
         return ((ret ^ (ret >> 24)) % (self.MAX_SEED + 1))
 
     def getstate(self):
-        """docstring for getstate"""
+        """getstate() for PySolFC"""
         return self.seed
+
+    def setstate(self, new_state):
+        """set to a new state"""
+        self.seed = new_state
