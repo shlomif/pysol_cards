@@ -77,3 +77,7 @@ class RandomBase(object):
         import time
         ret = int(time.time() * 256.0)
         return ((ret ^ (ret >> 24)) % (self.MAX_SEED + 1))
+
+    def getstate(self):
+        """docstring for getstate"""
+        return self.seed
