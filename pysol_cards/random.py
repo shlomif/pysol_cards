@@ -142,3 +142,26 @@ _ms_pat = re.compile("ms([0-9]+)\\n?\\Z")
 def match_ms_deal_prefix(mystring):
     ret = re.match(_ms_pat, mystring)
     return None if not ret else int(ret.group(1))
+
+
+MS_LONG_BIT = (1 << 1000)
+CUSTOM_BIT = (1 << 999)
+
+
+def random__str2int(s):
+    if s == 'Custom':
+        return CUSTOM_BIT | MS_LONG_BIT
+    m = match_ms_deal_prefix(s)
+    if m is not None:
+        return (m | MS_LONG_BIT)
+    else:
+        return int(s)
+
+
+def random__int2str(l):
+    if ((l & MS_LONG_BIT) != 0):
+        if ((l & CUSTOM_BIT) != 0):
+            return 'Custom'
+        return "ms" + str(l & (~ MS_LONG_BIT))
+    else:
+        return str(l)
