@@ -125,7 +125,7 @@ class MTRandom(RandomBase, random2.Random):
         return seed
 
     def reset(self):
-        self.setstate(self.initial_state)
+        self.setSeed(self.initial_seed)
 
 
 def shuffle(cards, game_num, which_deals):
