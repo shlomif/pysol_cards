@@ -14,6 +14,8 @@ test_pysol_cards
 Tests for `pysol_cards` module.
 """
 
+import pysol_cards.random
+
 from pysol_cards.tests import base
 
 
@@ -26,8 +28,6 @@ class TestPysolCards(base.TestCase):
         import pysol_cards.deal_game  # noqa: F401
 
     def test_import_random(self):
-        import pysol_cards.random
-
         class Foo(pysol_cards.random.LCRandom31):
             def bar(self):
                 return super(pysol_cards.random.LCRandom31, self).shuffle([0])
@@ -36,14 +36,11 @@ class TestPysolCards(base.TestCase):
         self.assertEqual(r.bar(), [0], "super()")
 
     def test_inc_seed(self):
-        import pysol_cards.random
-
         r = pysol_cards.random.LCRandom31(200000)
         seed = r.increaseSeed(200000)
         self.assertEqual(seed, 'ms200001', "increaseSeed()")
 
     def test_mtrandom_reset(self):
-        import pysol_cards.random
         r = pysol_cards.random.MTRandom(10000000)
         bef0 = r.randint(0, 100)
         bef1 = r.randint(0, 100)
@@ -53,7 +50,6 @@ class TestPysolCards(base.TestCase):
         self.assertEqual([aft0, aft1], [bef0, bef1], "MTRandom.reset()")
 
     def test_choice(self):
-        import pysol_cards.random
         r = pysol_cards.random.LCRandom64(500)
         result = r.choice([500, 600, 700])
         self.assertTrue((result in (500, 600, 700)), "choice")
