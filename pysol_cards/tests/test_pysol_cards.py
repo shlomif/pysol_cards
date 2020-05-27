@@ -42,6 +42,16 @@ class TestPysolCards(base.TestCase):
         seed = r.increaseSeed(200000)
         self.assertEqual(seed, 'ms200001', "increaseSeed()")
 
+    def test_mtrandom_reset(self):
+        import pysol_cards.random
+        r = pysol_cards.random.MTRandom(10000000)
+        bef0 = r.randint(0, 100)
+        bef1 = r.randint(0, 100)
+        r.reset()
+        aft0 = r.randint(0, 100)
+        aft1 = r.randint(0, 100)
+        self.assertEqual([aft0, aft1], [bef0, bef1], "MTRandom.reset()")
+
     def test_choice(self):
         import pysol_cards.random
         r = pysol_cards.random.LCRandom64(500)
