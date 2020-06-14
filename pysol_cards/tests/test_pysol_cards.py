@@ -54,6 +54,13 @@ class TestPysolCards(base.TestCase):
         result = r.choice([500, 600, 700])
         self.assertTrue((result in (500, 600, 700)), "choice")
 
+    def test_ms_single_deal(self):
+        from pysol_cards.single_deal_args_parse import SingleDealArgsParser
+        from pysol_cards.random import RandomBase
+        obj = SingleDealArgsParser(["dealer.py", "ms2000000", ])
+        self.assertEqual(obj.which_deals, RandomBase.DEALS_MS)
+        self.assertEqual(obj.game_num, 2000000)
+
     def test_ms_seed_prefix(self):
         from pysol_cards.random import match_ms_deal_prefix
         self.assertEqual(match_ms_deal_prefix('123'), None, "no prefix")

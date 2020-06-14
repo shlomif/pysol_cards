@@ -10,6 +10,7 @@
 """
 
 from pysol_cards.random import RandomBase
+from pysol_cards.random import match_ms_deal_prefix
 
 
 class SingleDealArgsParser(object):
@@ -31,5 +32,15 @@ class SingleDealArgsParser(object):
             else:
                 raise ValueError("Unknown flag " + a + "!")
 
-        self.game_num = int(args[1])
+        game_num_s = args[1]
+        msgame = match_ms_deal_prefix(game_num_s)
+        if msgame is not None:
+            if self.which_deals == RandomBase.DEALS_MS or \
+                    self.which_deals == RandomBase.DEALS_PYSOL:
+                self.which_deals = RandomBase.DEALS_MS
+                self.game_num = msgame
+            else:
+                raise ValueError("ms deals mismatch")
+        else:
+            self.game_num = int(game_num_s)
         self.which_game = args[2] if len(args) >= 3 else "freecell"
