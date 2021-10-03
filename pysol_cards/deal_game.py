@@ -117,26 +117,26 @@ class Game(object):
             "seahaven":
             ["seahaven_towers", "relaxed_seahaven",
              "relaxed_seahaven_towers"],
-            "bakers_dozen": None,
-            "gypsy": None,
+            "bakers_dozen": [],
+            "gypsy": [],
             "klondike":
             ["klondike_by_threes",
              "casino_klondike", "small_harp", "thumb_and_pouch",
              "vegas_klondike", "whitehead"],
-            "simple_simon": None,
-            "yukon": None,
+            "simple_simon": [],
+            "yukon": [],
             "beleaguered_castle":
             ["streets_and_alleys", "citadel"],
-            "fan": None,
-            "black_hole": None,
-            "all_in_a_row": None,
-            "golf": None,
+            "fan": [],
+            "black_hole": [],
+            "all_in_a_row": [],
+            "golf": [],
         }
 
     def __init__(self, game_id, game_num, which_deals, max_rank=13):
         mymap = {}
         for k, v in self.REVERSE_MAP.items():
-            for name in [k] + (v if v else []):
+            for name in [k] + v:
                 mymap[name] = k
         self.games_map = mymap
         self.game_id = game_id
