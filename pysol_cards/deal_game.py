@@ -133,17 +133,17 @@ class Game(object):
             "golf": [],
         }
 
+    GAMES_MAP = {}
+    for k, v in REVERSE_MAP.items():
+        for name in [k] + v:
+            GAMES_MAP[name] = k
+
     def __init__(self, game_id, game_num, which_deals, max_rank=13):
-        mymap = {}
-        for k, v in self.REVERSE_MAP.items():
-            for name in [k] + v:
-                mymap[name] = k
-        self.games_map = mymap
         self.game_id = game_id
         self.game_num = game_num
         self.which_deals = which_deals
         self.max_rank = max_rank
-        self.game_class = self.games_map[self.game_id]
+        self.game_class = self.GAMES_MAP[self.game_id]
         if not self.game_class:
             raise ValueError("Unknown game type " + self.game_id + "\n")
 
