@@ -66,11 +66,11 @@ class CardRenderer(object):
 def createCards(num_decks, max_rank=13):
     ret = []
     for _ in range(num_decks):
-        id = 0
+        id_ = 0
         for s in range(4):
             for r in range(max_rank):
-                ret.append(Card(id, r + 1, s))
-                id += 1
+                ret.append(Card(id_, r + 1, s))
+                id_ += 1
     return ret
 
 
