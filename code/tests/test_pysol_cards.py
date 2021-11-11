@@ -14,11 +14,12 @@ test_pysol_cards
 Tests for `pysol_cards` module.
 """
 
+from unittest import TestCase
+
 import pysol_cards.random
-from pysol_cards.tests import base
 
 
-class TestPysolCards(base.TestCase):
+class TestPysolCards(TestCase):
 
     def test_something(self):
         import pysol_cards.cards  # noqa: F401
