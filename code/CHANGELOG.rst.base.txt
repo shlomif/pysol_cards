@@ -1,3 +1,8 @@
+0.14.0
+------
+
+* Convert from pbr to https://pypi.org/project/pydistman/ .
+
 0.12.0
 ------
 
