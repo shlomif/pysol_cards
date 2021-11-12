@@ -20,7 +20,7 @@ dist_name = "pysol_cards"
 
 obj = DistManager(
     dist_name=dist_name,
-    dist_version="0.14.0",
+    dist_version="0.14.1",
     project_name="pysol_cards",
     project_short_description="Deal PySol FC Cards",
     release_date="2021-11-11",
