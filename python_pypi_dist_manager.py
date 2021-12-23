@@ -6,9 +6,6 @@
 #
 # Distributed under the terms of the MIT license.
 
-import re
-import sys
-
 from pydistman import DistManager
 
 
@@ -16,10 +13,6 @@ class Derived(DistManager):
     """docstring for Derived"""
     pass
 
-try:
-    cmd = sys.argv.pop(1)
-except IndexError:
-    cmd = 'build'
 
 dist_name = "pysol_cards"
 
@@ -36,4 +29,4 @@ obj = Derived(
     github_username="shlomif",
     filter_test_reqs=True,
 )
-obj.run_command(cmd=cmd, args=[])
+obj.cli_run()
