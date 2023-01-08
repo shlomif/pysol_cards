@@ -105,6 +105,15 @@ class LCRandom31(_LCBase):
             return "%05d" % int(seed)
         return seed
 
+    def getstate(self):
+        return (
+            self.seed,
+            self.seedx,
+        )
+
+    def setstate(self, token):
+        (self.seed, self.seedx,) = token
+
 
 # * Mersenne Twister random number generator
 class MTRandom(RandomBase, random2.Random):
