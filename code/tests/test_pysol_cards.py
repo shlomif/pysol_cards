@@ -136,3 +136,14 @@ AH 5S 6S AD 8H JD
 """,
             "MS deal #24",
         )
+
+    def test_set_get_state(self):
+        r = pysol_cards.random.MTRandom(10000000)
+        r.randint(0, 100)
+        state = r.getstate()
+        bef0 = r.randint(0, 100)
+        bef1 = r.randint(0, 100)
+        r.setstate(state)
+        aft0 = r.randint(0, 100)
+        aft1 = r.randint(0, 100)
+        self.assertEqual([aft0, aft1], [bef0, bef1], "MTRandom.setState()")

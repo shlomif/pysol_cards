@@ -119,6 +119,17 @@ class MTRandom(RandomBase, random2.Random):
         self.initial_state = self.getstate()
         self.origin = self.ORIGIN_UNKNOWN
 
+    def getstate(self):
+        return (
+            RandomBase.getstate(self),
+            random2.Random.getstate(self)
+        )
+
+    def setstate(self, token):
+        base, r2 = token
+        RandomBase.setstate(self, base)
+        random2.Random.setstate(self, r2)
+
     def setSeed(self, seed):
         random2.Random.__init__(self, seed)
         self.initial_state = self.getstate()
