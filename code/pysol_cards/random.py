@@ -178,10 +178,10 @@ def random__str2int(s):
         return int(s)
 
 
-def random__int2str(l):
-    if ((l & MS_LONG_BIT) != 0):
-        if ((l & CUSTOM_BIT) != 0):
+def random__int2str(myint):
+    if ((myint & MS_LONG_BIT) != 0):
+        if ((myint & CUSTOM_BIT) != 0):
             return 'Custom'
-        return "ms" + str(l & (~ MS_LONG_BIT))
+        return "ms" + str(myint & (~ MS_LONG_BIT))
     else:
-        return str(l)
+        return str(myint)
