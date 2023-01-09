@@ -140,6 +140,7 @@ AH 5S 6S AD 8H JD
     def test_set_get_state(self):
         for class_, seed in [
                 (pysol_cards.random.LCRandom31, 240),
+                (pysol_cards.random.LCRandom31, 6 + (1 << 32)),
                 (pysol_cards.random.LCRandom64, 240),
                 (pysol_cards.random.LCRandom64, 20000000000),
                 (pysol_cards.random.MTRandom, 10000000),
