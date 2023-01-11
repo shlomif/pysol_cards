@@ -1,3 +1,8 @@
+0.14.3
+------
+
+* Try to fix getstate() / setstate() ; with tests - https://github.com/shlomif/pysol_cards/issues/7 ( Thanks to @joeraz )
+
 0.14.2
 ------
 
