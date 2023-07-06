@@ -55,8 +55,8 @@ class TestPysolCards(TestCase):
         self.assertTrue((result in (500, 600, 700)), "choice")
 
     def test_ms_single_deal(self):
-        from pysol_cards.single_deal_args_parse import SingleDealArgsParser
         from pysol_cards.random import RandomBase
+        from pysol_cards.single_deal_args_parse import SingleDealArgsParser
         obj = SingleDealArgsParser(["dealer.py", "ms2000000", ])
         self.assertEqual(obj.which_deals, RandomBase.DEALS_MS)
         self.assertEqual(obj.game_num, 2000000)
