@@ -137,6 +137,33 @@ AH 5S 6S AD 8H JD
             "MS deal #24",
         )
 
+    def test_pysolfc_text__using_named_args(self):
+        from pysol_cards.cards import CardRenderer
+        from pysol_cards.deal_game import Game
+        from pysol_cards.random_base import RandomBase
+        deal_s = Game(
+            game_id="freecell",
+            game_num=300000000000,
+            which_deals=RandomBase.DEALS_PYSOLFC,
+            max_rank=13
+        ).calc_layout_string(
+            CardRenderer(print_ts=True)
+        )
+        # /usr/bin/make_pysol_freecell_board.py -F -t 300000000000 freecell
+        self.assertEqual(
+            deal_s,
+            """4S KD 6H 2D QC 4D AH
+QS 7S 5C AS KC 6S 8H
+TH JC 9S 2C 3D 4H 7D
+5S 4C 8D 7C JD 8C JS
+QH TS AC KS TC 5H
+6C 9D 9H 2H JH 3C
+9C 2S 8S 3H 6D QD
+KH 3S TD 5D 7H AD
+""",
+            "pysolfc deal #300000000000",
+        )
+
     def test_set_get_state(self):
         for class_, seed in [
                 (pysol_cards.random.LCRandom31, 240),
