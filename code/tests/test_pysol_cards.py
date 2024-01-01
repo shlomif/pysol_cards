@@ -181,3 +181,40 @@ KH 3S TD 5D 7H AD
             aft0 = r.randint(0, 100)
             aft1 = r.randint(0, 100)
             self.assertEqual([aft0, aft1], [bef0, bef1], "MTRandom.setState()")
+
+    def test_pysolfc_binary_star(self):
+        from pysol_cards.cards import CardRenderer
+        from pysol_cards.deal_game import Game
+        from pysol_cards.random_base import RandomBase
+        deal_s = Game(
+            game_id="binary_star",
+            game_num=240000,
+            which_deals=RandomBase.DEALS_PYSOLFC,
+            max_rank=13
+        ).calc_layout_string(
+            CardRenderer(print_ts=True)
+        )
+        # make_pysol_freecell_board.py -F -t 240000 binary_star
+        self.assertEqual(
+            deal_s,
+            """Foundations: AS KH
+5H 6H 5D QD 4H 4C
+2S KS 5S 9D 4H 6C
+KC QH 5D TS QD TH
+JH QS QC 6H 7H 7H
+7D 9D 2S JS TH AH
+AD KD 2C 7S 6D JD
+AH 8H 7C 3H 3S 8H
+TD AC 4S 4S JC 7C
+8S KS 9C 3C QC 9S
+KC 7D TC JD AS 9C
+2H 7S 6D 4D 9H 8C
+QS 5H 5C 3D 6C TD
+4C 5C TS 5S JS 3H
+9S AC QH 2H 4D 3S
+KD 8C 6S 6S 3D 3C
+2D 8S JH 8D TC 9H
+8D 2C AS JC AD 2D
+""",
+            "pysolfc binary_star deal #240000",
+        )

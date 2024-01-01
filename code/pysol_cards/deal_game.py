@@ -9,7 +9,8 @@
 
 """
 
-from pysol_cards.cards import Card, createCards
+from pysol_cards.cards import Card
+from pysol_cards.cards import createCards
 from pysol_cards.random import shuffle
 
 from six import print_
@@ -102,7 +103,7 @@ class Board(object):
 
     def calc_string(self, renderer):
         self.gen_lines(renderer)
-        return "".join(l + "\n" for l in self._lines)
+        return "".join(line + "\n" for line in self._lines)
 
 
 class Game(object):
@@ -131,6 +132,7 @@ class Game(object):
             "black_hole": [],
             "all_in_a_row": [],
             "golf": [],
+            "binary_star": [],
         }
 
     GAMES_MAP = {}
@@ -148,8 +150,10 @@ class Game(object):
             raise ValueError("Unknown game type " + self.game_id + "\n")
 
     def is_two_decks(self):
-        return self.game_id in ("der_katz", "der_katzenschwantz",
-                                "die_schlange", "gypsy")
+        return self.game_id in (
+            "binary_star", "der_katz", "der_katzenschwantz",
+            "die_schlange", "gypsy"
+        )
 
     def get_num_decks(self):
         return 2 if self.is_two_decks() else 1
@@ -277,6 +281,17 @@ class Game(object):
                 break
         if game.game_id == 'streets_and_alleys':
             game.cyclical_deal(4, 4)
+
+    def binary_star(game):
+        game.board = Board(17)
+        game.cards = game._shuffleHookMoveToBottom(
+            game.cards,
+            lambda c: (c.id in (13, 38), c.suit),
+            2)
+        for _ in range(2):
+            next(game)
+        game.cyclical_deal(2 * (52 - 1), 17)
+        game.board.raw_foundations_line = 'Foundations: AS KH'
 
     def black_hole(game):
         game.board = Board(17)
