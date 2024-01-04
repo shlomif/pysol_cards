@@ -282,26 +282,24 @@ class Game(object):
         if game.game_id == 'streets_and_alleys':
             game.cyclical_deal(4, 4)
 
-    def binary_star(game):
+    def _black_hole_generic(game, num_decks, excludes, f):
         game.board = Board(17)
         game.cards = game._shuffleHookMoveToBottom(
             game.cards,
-            lambda c: (c.id in (13, 38), c.suit),
+            lambda c: (c.id in excludes, c.suit),
             2)
-        for _ in range(2):
+        for _ in range(num_decks):
             next(game)
-        game.cyclical_deal(2 * (52 - 1), 17)
-        game.board.raw_foundations_line = 'Foundations: AS KH'
+        game.cyclical_deal(num_decks * (52 - 1), 17)
+        game.board.raw_foundations_line = 'Foundations: ' + f
+
+    def binary_star(game):
+        return game._black_hole_generic(
+            num_decks=2, excludes=frozenset((13, 38)), f='AS KH')
 
     def black_hole(game):
-        game.board = Board(17)
-        game.cards = game._shuffleHookMoveToBottom(
-            game.cards,
-            lambda c: (c.id == 13, c.suit),
-            1)
-        next(game)
-        game.cyclical_deal(52 - 1, 17)
-        game.board.raw_foundations_line = 'Foundations: AS'
+        return game._black_hole_generic(
+            num_decks=1, excludes=frozenset((13, )), f='AS')
 
     def der_katz(game):
         is_ds = game.game_id == 'die_schlange'
