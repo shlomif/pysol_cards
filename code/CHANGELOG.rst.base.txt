@@ -1,3 +1,9 @@
+0.16.0
+------
+
+* Add support for dealing "binary_star".
+* Add tests.
+
 0.14.3
 ------
 
