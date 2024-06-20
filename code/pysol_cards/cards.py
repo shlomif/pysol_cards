@@ -15,8 +15,8 @@ class Card(object):
     ACE = 1
     KING = 13
 
-    def __init__(self, id, rank, suit):
-        self.id, self.rank, self.suit = id, rank, suit
+    def __init__(self, id_, rank, suit):
+        self.id, self.rank, self.suit = id_, rank, suit
         self.empty, self.flipped = False, False
 
     def suit_s(self):
