@@ -13,8 +13,6 @@ from pysol_cards.cards import Card
 from pysol_cards.cards import createCards
 from pysol_cards.random import shuffle
 
-from six import print_
-
 
 def empty_card():
     ret = Card(0, 0, 0)
@@ -170,7 +168,7 @@ class Game(object):
         return self.board.calc_string(renderer)
 
     def print_layout(self, renderer):
-        print_(self.calc_layout_string(renderer), sep='', end='')
+        print(self.calc_layout_string(renderer), sep='', end='')
 
     def new_cards(self, cards):
         self.cards = cards
@@ -304,7 +302,7 @@ class Game(object):
     def der_katz(game):
         is_ds = game.game_id == 'die_schlange'
         if is_ds:
-            print_('Foundations: H-A S-A D-A C-A H-A S-A D-A C-A')
+            print('Foundations: H-A S-A D-A C-A H-A S-A D-A C-A')
         game.board = Board(9)
         i = 0
         for c in game:
