@@ -28,6 +28,7 @@ class Derived(DistManager):
         # This issue may probably affect other pydistman-based distributions:
         #
         # https://github.com/shlomif/pydistman
+        self._fmt_unlink("{dest_dir}/release")
         self._fmt_unlink("{dest_dir}/pysol_cards/__main__.py")
         self._fmt_unlink("{dest_dir}/pysol_cards/template.py")
         self._fmt_unlink("{dest_dir}/tests/__init__.py")
