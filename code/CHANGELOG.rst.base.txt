@@ -1,3 +1,9 @@
+0.18.0
+------
+
+* Remove remaining Python 2.x compatibility layer ( Thanks to @a-detiste )
+* Remove some leftover files from the cookiecutter ( such as __main__.py ) - https://github.com/shlomif/pysol_cards/issues/9 ( Thanks to @denilsonsa )
+
 0.16.0
 ------
 
