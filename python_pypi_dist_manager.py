@@ -9,7 +9,6 @@
 
 import os
 import os.path
-import shutil
 
 from pydistman import DistManager
 
@@ -49,5 +48,6 @@ obj = Derived(
     full_name="Shlomi Fish",
     github_username="shlomif",
     filter_test_reqs=True,
+    tox_envlist="py313",
 )
 obj.cli_run()
