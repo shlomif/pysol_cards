@@ -1,3 +1,8 @@
+0.18.1
+------
+
+* Remove some leftover files from the cookiecutter ( such as __main__.py ) - https://github.com/shlomif/pysol_cards/issues/9 ( Thanks to @denilsonsa ). Done by overriding entry_point in the new, version 0.0.12, pydistman.
+
 0.18.0
 ------
 

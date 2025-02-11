@@ -38,10 +38,10 @@ dist_name = "pysol_cards"
 
 obj = Derived(
     dist_name=dist_name,
-    dist_version="0.18.0",
+    dist_version="0.18.1",
     project_name="pysol_cards",
     project_short_description="Deal PySol FC Cards",
-    release_date="2024-09-15",
+    release_date="2025-02-11",
     project_year="2020",
     aur_email="shlomif@cpan.org",
     project_email="shlomif@cpan.org",
@@ -49,5 +49,6 @@ obj = Derived(
     github_username="shlomif",
     filter_test_reqs=True,
     tox_envlist="py313",
+    entry_point="none",
 )
 obj.cli_run()
