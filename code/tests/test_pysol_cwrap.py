@@ -48,3 +48,29 @@ QS AD 2H
 """,
             "pysolfc black_hole deal #240000",
         )
+        deal_idx = 3700037
+        deal_s = gen(deal_idx)
+        # make_pysol_freecell_board.py -F -t 240000 black_hole
+        self.assertEqual(
+            deal_s,
+            """Foundations: AS
+2D 5C 4C
+AD 6C 8C
+7C TD JC
+4H JH 5D
+KD 3H KS
+AH 6S 7S
+4D 6D QH
+9S KH 2H
+3D 7D 3S
+5S 4S 7H
+JD AC TH
+2C TS QC
+TC 6H QS
+9C 9H 3C
+9D 8H 8S
+QD KC 8D
+JS 5H 2S
+""",
+            "pysolfc black_hole deal #3700037",
+        )
