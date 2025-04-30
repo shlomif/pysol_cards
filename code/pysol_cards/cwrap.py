@@ -15,7 +15,7 @@ from pysol_cards.deal_game import Game
 from pysol_cards.random import RandomBase
 
 
-rend = CardRenderer(True)
+_r = CardRenderer(True)
 
 
 def create_gen(game_variant, ms):
@@ -25,6 +25,6 @@ def create_gen(game_variant, ms):
     game = Game(game_variant, 1, which_deals, 13)
 
     def _ret(deal_idx):
-        s = game.calc_deal_string(deal_idx, rend)
+        s = game.calc_deal_string(deal_idx, _r)
         return s
     return _ret
