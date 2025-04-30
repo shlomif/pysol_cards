@@ -18,7 +18,7 @@ from unittest import TestCase
 
 
 class TestPysolCards(TestCase):
-    def test_pysolfc_black_hole(self):
+    def test_cwrap_pysolfc_black_hole(self):
         from pysol_cards.cwrap import create_gen
         DEALS_PYSOLFC = 1
         gen = create_gen("black_hole", DEALS_PYSOLFC)
@@ -73,4 +73,26 @@ QD KC 8D
 JS 5H 2S
 """,
             "pysolfc black_hole deal #3700037",
+        )
+
+    def test_cwrap_ms_freecell(self):
+        from pysol_cards.cwrap import create_gen
+        DEALS_MS = 0
+        gen = create_gen("freecell", DEALS_MS)
+        deal_idx = 240002
+        deal_s = gen(deal_idx)
+        # make_pysol_freecell_board.py -F -t 240000 black_hole
+        self.assertEqual(
+            deal_s,
+            """4C AH 8D TH QS 4S JC
+AC 8S 3D 5S 4H 9H KS
+3S 8C QC 7D 6C 9S KH
+7S KC 9D 4D 2S TC AS
+9C 5D QD 6S 2H AD
+6D 5H 2D JD QH TD
+JS KD 5C 7C 6H 8H
+3C 3H JH TS 7H 2C
+""",
+
+            "pysolfc freecell ms deal #240002",
         )
