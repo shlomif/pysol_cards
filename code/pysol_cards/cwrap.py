@@ -8,6 +8,13 @@
 
 """
 
+        from pysol_cards.cwrap import create_gen
+        variant = "freecell"
+        DEALS_MS = 0
+        gen = create_gen(variant, DEALS_MS)
+        deal_idx = 240002
+        deal_s = gen(deal_idx)
+
 """
 
 from pysol_cards.cards import CardRenderer

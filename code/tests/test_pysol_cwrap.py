@@ -77,8 +77,9 @@ JS 5H 2S
 
     def test_cwrap_ms_freecell(self):
         from pysol_cards.cwrap import create_gen
+        variant = "freecell"
         DEALS_MS = 0
-        gen = create_gen("freecell", DEALS_MS)
+        gen = create_gen(variant, DEALS_MS)
         deal_idx = 240002
         deal_s = gen(deal_idx)
         # make_pysol_freecell_board.py -F -t 240000 black_hole
