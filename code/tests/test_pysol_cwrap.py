@@ -8,10 +8,12 @@
 # https://en.wikipedia.org/wiki/MIT_License
 
 """
-test_pysol_cards
-----------------------------------
+
+code/tests/test_pysol_cwrap.py
+------------------------------
 
 Tests for `pysol_cards.cwrap` module.
+
 """
 
 from unittest import TestCase
@@ -21,9 +23,9 @@ class TestPysolCards(TestCase):
     def test_cwrap_pysolfc_black_hole(self):
         from pysol_cards.cwrap import create_gen
         DEALS_PYSOLFC = 1
-        gen = create_gen("black_hole", DEALS_PYSOLFC)
+        generator = create_gen("black_hole", DEALS_PYSOLFC)
         deal_idx = 240000
-        deal_s = gen(deal_idx)
+        deal_s = generator(deal_idx)
         # make_pysol_freecell_board.py -F -t 240000 black_hole
         self.assertEqual(
             deal_s,
@@ -49,7 +51,7 @@ QS AD 2H
             "pysolfc black_hole deal #240000",
         )
         deal_idx = 3700037
-        deal_s = gen(deal_idx)
+        deal_s = generator(deal_idx)
         # make_pysol_freecell_board.py -F -t 240000 black_hole
         self.assertEqual(
             deal_s,
@@ -79,9 +81,9 @@ JS 5H 2S
         from pysol_cards.cwrap import create_gen
         variant = "freecell"
         DEALS_MS = 0
-        gen = create_gen(variant, DEALS_MS)
+        generator = create_gen(variant, DEALS_MS)
         deal_idx = 240002
-        deal_s = gen(deal_idx)
+        deal_s = generator(deal_idx)
         # /usr/bin/pi-make-microsoft-freecell-board -t 240002
         wanted_deal_s = """4C AH 8D TH QS 4S JC
 AC 8S 3D 5S 4H 9H KS
