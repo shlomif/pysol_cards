@@ -38,10 +38,10 @@ dist_name = "pysol_cards"
 
 obj = Derived(
     dist_name=dist_name,
-    dist_version="0.22.0",
+    dist_version="0.24.0",
     project_name="pysol_cards",
     project_short_description="Deal PySol FC Cards",
-    release_date="2025-05-02",
+    release_date="2025-06-13",
     project_year="2020",
     aur_email="shlomif@cpan.org",
     project_email="shlomif@cpan.org",

@@ -1,3 +1,8 @@
+0.24.0
+------
+
+* Add pysol_cards.gen_multi_cli for generating ranges of deals.
+
 0.22.0
 ------
 
