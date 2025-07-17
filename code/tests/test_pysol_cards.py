@@ -255,3 +255,61 @@ QS AD 2H
 """,
             "pysolfc black_hole deal #240000",
         )
+
+    def test_gen_multi_concatenated_files(self):
+        MS_23 = """3D 7D 9H 5H JH 2H 6C
+2D JS TH 9S 9C QD KC
+8H 4S 7S AH 6H JC 4D
+AC 2C QS QC JD 9D TD
+3H 5C 4C 3S TC 7C
+AD QH 2S 7H AS KD
+5D 5S 3C 4H KS TS
+8D 6D 8C 6S 8S KH
+"""
+
+        MS_24 = """4C 2C 9C 8C QS 4S 2H
+5H QH 3C AC 3H 4H QD
+QC 9S 6H 9H 3S KS 3D
+5D 2S JC 5C JH 6D AS
+2D KD TH TC TD 8D
+7H JS KH TS KC 7C
+AH 5S 6S AD 8H JD
+7S 6C 7D 4D 8S 9D
+"""
+
+        MS_25 = """5C KS 6H 4C 6C 9D TD
+2D 7S 6S QS 3S 6D TS
+JC 4D 5D 7H QD 2C TH
+9H 3H AS JS AD AH 8S
+4S 2H JH TC JD 3C
+KH 4H 8H 9S 7D 8C
+9C 2S AC KD 5H 8D
+7C QH KC QC 3D 5S
+"""
+
+        from pysol_cards.gen_multi_cli import GenMulti
+        from pathlib import Path
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            tmpfn = str(Path(tmpdirname) / "fc.txt")
+            obj = GenMulti(
+                concat=True,
+                dir_=tmpfn,
+                force=False,
+                game_variant="freecell",
+                idxs=["seq", "23", "25",],
+                mkdir_=False,
+                ms=True,
+                prefix="fc",
+                suffix=".txt",
+            )
+            obj.run()
+
+            with open(tmpfn, "rt") as fh:
+                written_content = fh.read()
+                self.assertEqual(
+                    written_content,
+                    MS_23 + MS_24 + MS_25 + "",
+                    "GenMulti concatenate",
+                )
